@@ -1,0 +1,26 @@
+@import "../sass/styles.scss";
+
+.menu {
+  margin-bottom: 1rem;
+
+  .item {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: fit-content;
+  }
+
+  h2 {
+    width: fit-content;
+    display: flex;
+    height: fit-content;
+    font-size: 22px;
+    text-transform: uppercase;
+  }
+
+  p {
+    height: fit-content;
+    margin-bottom: 1rem;
+    font-size: 14px;
+  }
+}
