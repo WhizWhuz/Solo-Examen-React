@@ -1,5 +1,15 @@
-@import "../../assets/sass/styles.scss";
+@import "../../assets/styles/sass/styles.scss";
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 .menuPage {
   display: flex;
@@ -12,19 +22,197 @@
   align-items: center;
   gap: 2rem;
   color: white;
+  position: fixed;
 }
 
 .menuMenu {
-  width: 90vw;
+  width: 94vw;
   background-color: #605858;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 0.3rem;
+  min-height: 88vh;
+  max-height: 88vh;
+  overflow-y: scroll;
 }
 
 .menuHeader {
-  margin: 23px 19px;
+  padding: 1.5rem;
   align-self: flex-start;
+  text-transform: uppercase;
+}
+
+.menuContainer {
+  display: flex;
+  flex-direction: column;
+  opacity: 0; /* Start hidden */
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+.cont {
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.squareContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5em;
+  padding: 0.5em;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 1em;
+
+  h2 {
+    width: fit-content;
+    display: flex;
+    height: fit-content;
+    font-size: 22px;
+    text-transform: uppercase;
+  }
+
+  p {
+    height: fit-content;
+    font-size: 14px;
+    white-space: normal;
+  }
+}
+
+.dip {
+  display: flex;
+  width: 85%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.square {
+  background-color: lighten($color-primary, 10%);
+  width: 6rem;
+  height: 2rem;
+  border-radius: 0.2rem;
+  text-align: center;
+  font-size: 14px;
+  text-transform: lowercase;
+
+  & :hover {
+    background-color: ligten($color-primary, 20%);
+  }
+
+  & :active {
+    background-color: ligten($color-primary, 40%);
+  }
+}
+
+.squareHeader {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 1.5em;
+  width: 100%;
+  text-align: left;
+  border-top: 0.1px solid rgba(255, 255, 255, 0.342);
+  h2 {
+    width: fit-content;
+    display: flex;
+    height: fit-content;
+    font-size: 22px;
+    text-transform: uppercase;
+  }
+
+  p {
+    height: fit-content;
+    font-size: 14px;
+    white-space: normal;
+  }
+}
+
+.loadingMessage {
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+  color: gray;
+  margin-top: 20px;
+}
+
+// Cart Modal
+
+.cartPage {
+  background-color: white;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  gap: 2em;
+  align-items: center;
+  z-index: 100;
+  color: #353131;
+}
+
+.cartContainer {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  overflow-y: scroll;
+  height: 84%;
+  justify-content: space-between;
+}
+
+.cartHolder {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  & h2 {
+    width: fit-content;
+  }
+
+  & p {
+    width: fit-content;
+  }
+}
+
+.cartCart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sep {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 2px 4px #00000030;
+}
+
+.dots {
+  flex-grow: 1;
+  border-bottom: 1px dotted rgb(255, 255, 255);
+  margin: 0 10px; // Adjust spacing between name & price
+  margin-top: 1em;
+}
+
+.cartHeader {
+  position: absolute;
+  top: 3.5%;
+  text-transform: uppercase;
+}
+
+.totalMoney {
+  display: flex;
+  background-color: #3531313d;
+  width: 90%;
+  align-self: center;
+  padding: 1em;
+  justify-content: space-between;
+  font-size: 22px;
+  align-items: center;
+  font-weight: 900;
+  border-radius: 0.5rem;
   text-transform: uppercase;
 }

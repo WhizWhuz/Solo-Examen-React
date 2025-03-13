@@ -1,0 +1,46 @@
+@import "../assets/styles/sass/styles.scss";
+
+@keyframes fadeInItem {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cont {
+  display: flex;
+  gap: 1em;
+}
+
+.squareContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5em;
+  opacity: 0;
+  animation: fadeInItem 0.5s ease-in-out forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+.square {
+  background-color: lighten($color-primary, 10%);
+  width: 6rem;
+  height: 2rem;
+  border-radius: 0.2rem;
+  text-align: center;
+  font-size: 14px;
+  text-transform: lowercase;
+
+  & :hover {
+    background-color: ligten($color-primary, 20%);
+  }
+
+  & :active {
+    background-color: ligten($color-primary, 40%);
+  }
+}

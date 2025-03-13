@@ -1,0 +1,123 @@
+@import "../../assets/styles/sass/styles.scss";
+
+.etaPage {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: $color-primary;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+}
+
+.etaContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  gap: 2em;
+  align-items: center;
+}
+
+.etaHeader {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  text-align: center;
+  text-transform: uppercase;
+  gap: 1rem;
+  color: white;
+
+  & h1 {
+    font-size: 32px;
+  }
+  & h2 {
+    font-size: 26px;
+  }
+  & h3 {
+    font-size: 15px;
+  }
+}
+
+.billPage {
+  position: absolute;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: #605858;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
+  z-index: 100;
+  align-items: center;
+}
+
+.billContainer {
+  display: flex;
+  background-color: white;
+  border-radius: 0.5rem;
+  width: 90vw;
+  flex-direction: column;
+  min-height: 62vh;
+  max-height: 66vh;
+  align-items: center;
+  gap: 1em;
+  text-transform: uppercase;
+  justify-content: space-between;
+
+  & img {
+    height: 50px;
+    margin-top: 2em;
+  }
+
+  & p {
+    font-size: 12px;
+  }
+
+  & h2 {
+    font-size: 16px;
+  }
+
+  & h3 {
+    margin-top: 2em;
+    font-size: 12px;
+  }
+}
+
+.billWrapper {
+  width: 90%;
+  min-height: 32vh;
+  overflow-y: scroll;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  width: 90%;
+}
+
+.billTotal {
+  background-color: rgba(53, 49, 49, 0.24);
+  color: black;
+  width: 100%;
+  min-height: 10vh;
+  display: flex;
+  justify-content: center;
+  max-height: 10vh;
+}
+
+.totalContainer {
+  display: flex;
+  width: 90%;
+  align-items: center;
+  justify-content: space-between;
+
+  & span {
+    display: block;
+  }
+
+  & h5 {
+    font-size: 24px;
+  }
+}

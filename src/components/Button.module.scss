@@ -1,0 +1,61 @@
+@import "../assets/styles/sass/styles.scss";
+
+button {
+  all: unset;
+  text-transform: uppercase;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.button-square {
+  padding: 1em;
+  background-color: #f4f3f1;
+  border-radius: 0.2em;
+}
+
+.button-rect {
+  padding: 1.5rem 0.5rem;
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+}
+.button-marginFat {
+  padding: 1.5rem 2.5rem;
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 1rem;
+}
+.button-hollow {
+  padding: 1.5rem 0.5rem;
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+  border: 2px solid white;
+}
+
+.button-rectanglebig {
+  padding: 1.5rem 0.5rem;
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+  width: 100%;
+}
+
+.button-squareitem {
+  width: 10rem;
+  height: 3rem;
+  text-transform: lowercase;
+  background-color: lighten($color-primary, 20%);
+  border-radius: 0.2em;
+  text-align: center;
+  box-shadow: inset 0px 0px 5px rgb(0 0 0 / 60%);
+  border: 1px solid #ffffff40;
+
+  & :hover {
+    background-color: lighten($color-primary, 10%);
+  }
+  & :active {
+    background-color: lighten($color-primary, 40%);
+  }
+}

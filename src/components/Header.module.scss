@@ -1,0 +1,33 @@
+@import "../assets/styles/sass/styles.scss";
+
+.navBar {
+  display: flex;
+  height: fit-content;
+  gap: 8em;
+  justify-content: space-around;
+  top: 2%;
+  width: 100%;
+  position: relative;
+
+  button {
+    z-index: 100;
+  }
+}
+
+.cartBadge {
+  position: absolute;
+  background-color: #eb5757;
+  width: 1.5em;
+  height: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 100%;
+  top: -9%;
+  right: 6%;
+}
+
+.hidden {
+  visibility: hidden;
+}
