@@ -1,5 +1,7 @@
 @import "../../assets/styles/sass/styles.scss";
 
+// Animation
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -10,6 +12,8 @@
     transform: translateY(0);
   }
 }
+
+// Menu Design
 
 .menuPage {
   display: flex;
@@ -81,6 +85,20 @@
     font-size: 14px;
     white-space: normal;
   }
+}
+
+.cartBadge {
+  position: absolute;
+  background-color: #eb5757;
+  width: 1.5em;
+  height: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 100%;
+  top: 1%;
+  right: 5%;
 }
 
 .dip {

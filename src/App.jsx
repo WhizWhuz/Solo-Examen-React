@@ -1,48 +1,85 @@
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchTenant } from "./redux/tenantSlice";
-import { fetchApiKey } from "./redux/cartSlice";
-import "./App.css";
-import Menu from "../src/pages/Menu/Menu";
-import Eta from "../src/pages/Eta/Eta";
+import Menu from "./pages/Menu/Menu";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./global.scss";
+import Eta from "./pages/Eta/Eta";
 
 function App() {
-  const dispatch = useDispatch();
-  const apiKey = useSelector((state) => state.cart.apiKey); // ✅ Get API key from Redux
-  const apiStatus = useSelector((state) => state.cart.status);
-  const apiKeyStatus = useSelector((state) => state.cart.status);
+  // Tenant ID
+  const tId = "f3o7";
+  const [tenantId, setTenantId] = useState(
+    localStorage.getItem("tenantId") || tId
+  );
 
+  // API Menu & ETA States
+
+  const [apiKey, setApiKey] = useState(null);
   const [cartOpen, setCartOpen] = useState(false);
   const [menu, setMenu] = useState([]);
 
-  useEffect(() => {
-    dispatch(fetchApiKey());
-  }, [dispatch]);
+  const [orderStatus, setOrderStatus] = useState("idle");
+  const [eta, setEta] = useState(null);
+
+  // Loading State
+
+  const [loading, setLoading] = useState(true);
+
+  // Fetch Key useEffect
 
   useEffect(() => {
-    if (apiKey) {
-      dispatch(fetchTenant());
-    }
-  }, [apiKey, dispatch]);
+    const fetchApiKey = async () => {
+      try {
+        const response = await fetch(
+          "https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/keys",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+          }
+        );
+
+        if (!response.ok) throw new Error("Gick inte hämta nyckeln");
+        const data = await response.json();
+        console.log(data.key);
+        console.log(tenantId);
+        setApiKey(data.key);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchApiKey();
+  }, [tenantId]);
+
+  // Fetch Menu IF Key & Tenant ID
 
   useEffect(() => {
-    if (apiKey) {
-      fetch("https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/menu", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "x-zocom": apiKey,
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => setMenu(data.items || []))
-        .catch((error) => console.error("Menu fetch error:", error));
-    }
-  }, [apiKey]);
+    if (!apiKey || !tenantId) return;
 
-  const apiKeyLoaded = apiKey && apiStatus === "succeeded";
+    const fetchMenu = async () => {
+      try {
+        const response = await fetch(
+          "https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com/menu",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              "x-zocom": apiKey,
+            },
+          }
+        );
+        if (!response.ok) throw new Error("Failed to fetch menu");
+        const menuData = await response.json();
+        setMenu(menuData.items);
+        console.log(menuData.items);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching menu:", error);
+      }
+    };
+
+    fetchMenu();
+  }, [apiKey, tenantId]);
+
+  // Categorized menu - breaks down Menu after "Type"
 
   const categorizedMenu = menu.reduce((acc, item) => {
     if (!acc[item.type]) acc[item.type] = [];
@@ -59,14 +96,23 @@ function App() {
             <Menu
               setCartOpen={setCartOpen}
               cartOpen={cartOpen}
-              menu={menu}
               categorizedMenu={categorizedMenu}
+              apiKey={apiKey}
+              tenantId={tenantId}
+              eta={eta}
+              setEta={setEta}
+              orderStatus={orderStatus}
+              setOrderStatus={setOrderStatus}
+              loading={loading}
+              setLoading={setLoading}
             />
           }
         />
         <Route
           path="eta"
-          element={<Eta cartOpen={cartOpen} setCartOpen={setCartOpen} />}
+          element={
+            <Eta eta={eta} cartOpen={cartOpen} setCartOpen={setCartOpen} />
+          }
         />
       </Routes>
     </BrowserRouter>

@@ -1,0 +1,53 @@
+@import "../assets/styles/sass/styles.scss";
+
+@keyframes fadeInItem {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.menu {
+  border-top: 0.1px solid rgba(255, 255, 255, 0.342);
+  cursor: pointer; // Ensures it looks clickable
+
+  .item {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: fit-content;
+    opacity: 0;
+    animation: fadeInItem 0.5s ease-in-out forwards;
+    animation-delay: var(--delay, 0s);
+  }
+
+  h2 {
+    width: fit-content;
+    display: flex;
+    height: fit-content;
+    font-size: 22px;
+    text-transform: uppercase;
+    width: fit-content;
+  }
+
+  p {
+    height: fit-content;
+    font-size: 14px;
+    white-space: normal;
+  }
+}
+
+li {
+  list-style: none;
+}
+
+.dots {
+  flex-grow: 1;
+  border-bottom: 1px dotted rgb(255, 255, 255);
+  margin: 0 10px;
+  margin-bottom: 0.2em;
+}
